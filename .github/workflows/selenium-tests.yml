@@ -14,7 +14,6 @@ jobs:
     runs-on: windows-latest
 
     steps:
-
       - name: Checkout Code
         uses: actions/checkout@v4
 
@@ -31,19 +30,23 @@ jobs:
       - name: Run Tests
         run: python TestRunner.py
 
+      - name: Install Allure CLI
+        run: |
+          choco install allure -y
+        shell: powershell
+
+      - name: Generate Allure Report
+        if: always()
+        run: |
+          allure generate reports/allure-results --clean -o reports/allure-report
+        shell: powershell
+
       - name: Upload Allure Results
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: allure-results
           path: reports/allure-results
-
-      - name: Generate Allure Report
-        if: always()
-        uses: simple-elf/allure-report-action@v1.7
-        with:
-          allure_results: reports/allure-results
-          allure_report: reports/allure-report
 
       - name: Upload Allure Report
         if: always()
@@ -76,11 +79,8 @@ jobs:
               </table>
               <br>
               <a href="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" style="
-                background-color:#4CAF50;
-                color:white;
-                padding:10px 20px;
-                text-decoration:none;
-                border-radius:4px;">
+                background-color:#4CAF50;color:white;padding:10px 20px;
+                text-decoration:none;border-radius:4px;">
                 📊 View Test Run
               </a>
             </body>
@@ -110,11 +110,8 @@ jobs:
               </table>
               <br>
               <a href="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" style="
-                background-color:#f44336;
-                color:white;
-                padding:10px 20px;
-                text-decoration:none;
-                border-radius:4px;">
+                background-color:#f44336;color:white;padding:10px 20px;
+                text-decoration:none;border-radius:4px;">
                 🖥️ View Failed Run
               </a>
             </body>
