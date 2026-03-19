@@ -1,0 +1,17 @@
+requests
+pytest
+jsonschema
+python-dotenv
+pytest-html
+allure-pytest
+requests-mock
+pandas
+numpy
+pytest-order
+pytest-dependency
+json-server
+Selenium
+pytest
+pytest-html
+allure-pytest
+
