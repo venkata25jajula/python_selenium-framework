@@ -10,17 +10,64 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  checkout:
     runs-on: windows-latest
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+
+      - name: Upload Source
+        uses: actions/upload-artifact@v4
+        with:
+          name: source
+          path: .
+
+  build:
+    runs-on: windows-latest
+    needs: checkout
+    steps:
+      - name: Download Source
+        uses: actions/download-artifact@v4
+        with:
+          name: source
+          path: .
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Cache Dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~\AppData\Local\pip\Cache
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+
+  test:
+    runs-on: windows-latest
+    needs: build
+    steps:
+      - name: Download Source
+        uses: actions/download-artifact@v4
+        with:
+          name: source
+          path: .
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Restore Cached Dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~\AppData\Local\pip\Cache
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
 
       - name: Install Dependencies
         run: |
@@ -38,10 +85,9 @@ jobs:
           path: reports/allure-results
 
   report:
-    runs-on: ubuntu-latest          # ✅ Linux required for container action
+    runs-on: windows-latest
     needs: test
-    if: always()                    # Run even if tests fail
-
+    if: always()
     steps:
       - name: Download Allure Results
         uses: actions/download-artifact@v4
@@ -49,11 +95,18 @@ jobs:
           name: allure-results
           path: reports/allure-results
 
+      - name: Install Allure CLI
+        run: |
+          $version = "2.32.0"
+          $url = "https://github.com/allure-framework/allure2/releases/download/$version/allure-$version.zip"
+          Invoke-WebRequest -Uri $url -OutFile "allure.zip"
+          Expand-Archive -Path "allure.zip" -DestinationPath "C:\allure"
+          echo "C:\allure\allure-$version\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+        shell: powershell
+
       - name: Generate Allure Report
-        uses: simple-elf/allure-report-action@v1.7
-        with:
-          allure_results: reports/allure-results
-          allure_report: reports/allure-report
+        run: allure generate reports/allure-results --clean -o reports/allure-report
+        shell: powershell
 
       - name: Upload Allure Report
         uses: actions/upload-artifact@v4
@@ -61,6 +114,25 @@ jobs:
           name: allure-report
           path: reports/allure-report
 
+      - name: Trigger Jenkins Job
+        run: |
+          $commitMsg = "${{ github.event.head_commit.message }}" -replace '"', '\"'
+          $response = Invoke-WebRequest `
+            -Uri "${{ secrets.JENKINS_URL }}/job/${{ secrets.JENKINS_JOB_NAME }}/buildWithParameters?token=${{ secrets.JENKINS_TOKEN }}&BRANCH=${{ github.ref_name }}&RUN_NUMBER=${{ github.run_number }}&STATUS=${{ needs.test.result }}&COMMIT_MESSAGE=$([Uri]::EscapeDataString($commitMsg))" `
+            -Method POST `
+            -Headers @{ Authorization = "Basic $([Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes('${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_API_TOKEN }}')))" } `
+            -UseBasicParsing
+          Write-Host "Jenkins response: $($response.StatusCode)"
+          if ($response.StatusCode -ne 201) {
+            Write-Error "Failed to trigger Jenkins job: $($response.StatusCode)"
+          }
+        shell: powershell
+
+  email:
+    runs-on: windows-latest
+    needs: [test, report]
+    if: always()
+    steps:
       - name: Send Email on Success
         if: needs.test.result == 'success'
         uses: dawidd6/action-send-mail@v3
@@ -82,6 +154,7 @@ jobs:
                 <tr><td><b>Branch</b></td><td>${{ github.ref_name }}</td></tr>
                 <tr><td><b>Run #</b></td><td>${{ github.run_number }}</td></tr>
                 <tr><td><b>Triggered by</b></td><td>${{ github.actor }}</td></tr>
+                <tr><td><b>Commit</b></td><td>${{ github.event.head_commit.message }}</td></tr>
               </table>
               <br>
               <a href="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" style="
@@ -113,6 +186,7 @@ jobs:
                 <tr><td><b>Branch</b></td><td>${{ github.ref_name }}</td></tr>
                 <tr><td><b>Run #</b></td><td>${{ github.run_number }}</td></tr>
                 <tr><td><b>Triggered by</b></td><td>${{ github.actor }}</td></tr>
+                <tr><td><b>Commit</b></td><td>${{ github.event.head_commit.message }}</td></tr>
               </table>
               <br>
               <a href="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" style="
