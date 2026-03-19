@@ -97,7 +97,7 @@ jobs:
 
       - name: Install Allure CLI
         run: |
-          $version = "2.32.0"
+          $version = "2.38.0"
           $url = "https://github.com/allure-framework/allure2/releases/download/$version/allure-$version.zip"
           Invoke-WebRequest -Uri $url -OutFile "allure.zip"
           Expand-Archive -Path "allure.zip" -DestinationPath "C:\allure"
