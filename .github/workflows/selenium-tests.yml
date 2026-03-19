@@ -1,0 +1,120 @@
+name: Selenium Test Pipeline
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: windows-latest
+
+    steps:
+
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Tests
+        run: python TestRunner.py
+
+      - name: Upload Allure Results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-results
+          path: reports/allure-results
+
+      - name: Generate Allure Report
+        if: always()
+        uses: simple-elf/allure-report-action@master
+        with:
+          allure_results: reports/allure-results
+          allure_report: reports/allure-report
+
+      - name: Upload Allure Report
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report
+          path: reports/allure-report
+
+      - name: Send Email on Success
+        if: success()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          to: jajulaapparao@gmail.com
+          from: ${{ secrets.EMAIL_USERNAME }}
+          subject: "✅ PASSED - ${{ github.repository }} #${{ github.run_number }}"
+          content_type: text/html
+          body: |
+            <html>
+            <body>
+              <h2 style="color:green;">✅ All Tests Passed!</h2>
+              <table border="1" cellpadding="6" cellspacing="0">
+                <tr><td><b>Repository</b></td><td>${{ github.repository }}</td></tr>
+                <tr><td><b>Branch</b></td><td>${{ github.ref_name }}</td></tr>
+                <tr><td><b>Run #</b></td><td>${{ github.run_number }}</td></tr>
+                <tr><td><b>Triggered by</b></td><td>${{ github.actor }}</td></tr>
+              </table>
+              <br>
+              <a href="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" style="
+                background-color:#4CAF50;
+                color:white;
+                padding:10px 20px;
+                text-decoration:none;
+                border-radius:4px;">
+                📊 View Test Run
+              </a>
+            </body>
+            </html>
+
+      - name: Send Email on Failure
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          to: jajulaapparao@gmail.com
+          from: ${{ secrets.EMAIL_USERNAME }}
+          subject: "❌ FAILED - ${{ github.repository }} #${{ github.run_number }}"
+          content_type: text/html
+          body: |
+            <html>
+            <body>
+              <h2 style="color:red;">❌ Build Failed!</h2>
+              <table border="1" cellpadding="6" cellspacing="0">
+                <tr><td><b>Repository</b></td><td>${{ github.repository }}</td></tr>
+                <tr><td><b>Branch</b></td><td>${{ github.ref_name }}</td></tr>
+                <tr><td><b>Run #</b></td><td>${{ github.run_number }}</td></tr>
+                <tr><td><b>Triggered by</b></td><td>${{ github.actor }}</td></tr>
+              </table>
+              <br>
+              <a href="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" style="
+                background-color:#f44336;
+                color:white;
+                padding:10px 20px;
+                text-decoration:none;
+                border-radius:4px;">
+                🖥️ View Failed Run
+              </a>
+            </body>
+            </html>
