@@ -30,17 +30,6 @@ jobs:
       - name: Run Tests
         run: python TestRunner.py
 
-      - name: Install Allure CLI
-        run: |
-          choco install allure -y
-        shell: powershell
-
-      - name: Generate Allure Report
-        if: always()
-        run: |
-          allure generate reports/allure-results --clean -o reports/allure-report
-        shell: powershell
-
       - name: Upload Allure Results
         if: always()
         uses: actions/upload-artifact@v4
@@ -48,15 +37,32 @@ jobs:
           name: allure-results
           path: reports/allure-results
 
+  report:
+    runs-on: ubuntu-latest          # ✅ Linux required for container action
+    needs: test
+    if: always()                    # Run even if tests fail
+
+    steps:
+      - name: Download Allure Results
+        uses: actions/download-artifact@v4
+        with:
+          name: allure-results
+          path: reports/allure-results
+
+      - name: Generate Allure Report
+        uses: simple-elf/allure-report-action@v1.7
+        with:
+          allure_results: reports/allure-results
+          allure_report: reports/allure-report
+
       - name: Upload Allure Report
-        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
           path: reports/allure-report
 
       - name: Send Email on Success
-        if: success()
+        if: needs.test.result == 'success'
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
@@ -87,7 +93,7 @@ jobs:
             </html>
 
       - name: Send Email on Failure
-        if: failure()
+        if: needs.test.result == 'failure'
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
