@@ -114,20 +114,6 @@ jobs:
           name: allure-report
           path: reports/allure-report
 
-      - name: Trigger Jenkins Job
-        run: |
-          $commitMsg = "${{ github.event.head_commit.message }}" -replace '"', '\"'
-          $response = Invoke-WebRequest `
-            -Uri "${{ secrets.JENKINS_URL }}/job/${{ secrets.JENKINS_JOB_NAME }}/buildWithParameters?token=${{ secrets.JENKINS_TOKEN }}&BRANCH=${{ github.ref_name }}&RUN_NUMBER=${{ github.run_number }}&STATUS=${{ needs.test.result }}&COMMIT_MESSAGE=$([Uri]::EscapeDataString($commitMsg))" `
-            -Method POST `
-            -Headers @{ Authorization = "Basic $([Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes('${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_API_TOKEN }}')))" } `
-            -UseBasicParsing
-          Write-Host "Jenkins response: $($response.StatusCode)"
-          if ($response.StatusCode -ne 201) {
-            Write-Error "Failed to trigger Jenkins job: $($response.StatusCode)"
-          }
-        shell: powershell
-
   email:
     runs-on: windows-latest
     needs: [test, report]
