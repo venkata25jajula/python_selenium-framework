@@ -127,11 +127,10 @@ jobs:
           server_port: 587
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "✅ PASSED - ${{ github.repository }} #${{ github.run_number }}"
           to: jajulaapparao@gmail.com
           from: ${{ secrets.EMAIL_USERNAME }}
-          subject: "✅ PASSED - ${{ github.repository }} #${{ github.run_number }}"
-          content_type: text/html
-          body: |
+          html_body: |
             <html>
             <body>
               <h2 style="color:green;">✅ All Tests Passed!</h2>
@@ -159,11 +158,10 @@ jobs:
           server_port: 587
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "❌ FAILED - ${{ github.repository }} #${{ github.run_number }}"
           to: jajulaapparao@gmail.com
           from: ${{ secrets.EMAIL_USERNAME }}
-          subject: "❌ FAILED - ${{ github.repository }} #${{ github.run_number }}"
-          content_type: text/html
-          body: |
+          html_body: |
             <html>
             <body>
               <h2 style="color:red;">❌ Build Failed!</h2>
