@@ -18,7 +18,6 @@ class BasePage:
         self.testname = testname
         self.wait = WebDriverWait(driver, 20)
 
-
     # ---------- Element Finders ----------
 
     def find_element(self, locator):

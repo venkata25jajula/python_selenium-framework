@@ -22,8 +22,6 @@ class PytestHooks:
                 os.makedirs("screenshots", exist_ok=True)
                 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
                 screenshot_path = f"screenshots/{item.name}_{timestamp}.png"
-                #screenshot_path = f"screenshots/{item.name}.png"
-
                 driver.save_screenshot(screenshot_path)
 
                 allure.attach.file(
