@@ -1,0 +1,19 @@
+2026-03-20 15:13:53,091 | INFO | base_test | TestCart | test_validate_items_in_cart | Starting Test test_validate_items_in_cart 
+2026-03-20 15:13:55,972 | INFO | base_test | TestCart | test_validate_items_in_cart | launch application in chrome chrome using URL https://www.saucedemo.com/
+2026-03-20 15:13:55,998 | INFO | base_test | TestCart | test_validate_items_in_cart | Maximize the window
+2026-03-20 15:13:56,118 | INFO | base_page | LoginPage | test_validate_items_in_cart | Entered text <<standard_user>> into element with locator: ('id', 'user-name')
+2026-03-20 15:13:56,118 | INFO | login_page | LoginPage | test_validate_items_in_cart | Username entered:<<standard_user>>
+2026-03-20 15:13:56,203 | INFO | base_page | LoginPage | test_validate_items_in_cart | Entered text <<secret_sauce>> into element with locator: ('id', 'password')
+2026-03-20 15:13:56,204 | INFO | login_page | LoginPage | test_validate_items_in_cart | Password entered:<<secret_sauce>>
+2026-03-20 15:13:56,318 | INFO | base_page | LoginPage | test_validate_items_in_cart | Clicked on element : ('id', 'login-button')
+2026-03-20 15:13:56,319 | INFO | login_page | LoginPage | test_validate_items_in_cart | Login Button clicked
+2026-03-20 15:13:56,395 | INFO | base_page | InventoryPage | test_validate_items_in_cart | Clicked on element : ('xpath', "//div[normalize-space()='Sauce Labs Backpack']/ancestor::div[@class='inventory_item']//button")
+2026-03-20 15:13:56,478 | INFO | base_page | InventoryPage | test_validate_items_in_cart | Clicked on element : ('xpath', "//div[normalize-space()='Sauce Labs Fleece Jacket']/ancestor::div[@class='inventory_item']//button")
+2026-03-20 15:13:56,573 | INFO | base_page | InventoryPage | test_validate_items_in_cart | Clicked on element : ('class name', 'shopping_cart_link')
+2026-03-20 15:13:56,610 | INFO | base_page | CartPage | test_validate_items_in_cart | Cart badge count: 2
+2026-03-20 15:13:56,616 | INFO | cart_test | TestCart | test_validate_items_in_cart | Number of items in the cart: <<2>>
+2026-03-20 15:13:56,632 | INFO | cart_page | CartPage | test_validate_items_in_cart | Cart item: <<Sauce Labs Backpack>>
+2026-03-20 15:13:56,638 | INFO | cart_page | CartPage | test_validate_items_in_cart | Cart item: <<Sauce Labs Fleece Jacket>>
+2026-03-20 15:13:56,638 | INFO | cart_test | TestCart | test_validate_items_in_cart | Sauce Labs Backpack present in cart
+2026-03-20 15:13:56,638 | INFO | cart_test | TestCart | test_validate_items_in_cart | Sauce Labs Fleece Jacket present in cart
+2026-03-20 15:14:00,779 | INFO | base_test | TestCart | test_validate_items_in_cart | Finished test test_validate_items_in_cart

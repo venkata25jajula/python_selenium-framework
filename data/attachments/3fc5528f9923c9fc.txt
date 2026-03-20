@@ -1,0 +1,16 @@
+2026-03-20 15:13:25,508 | INFO | base_test | TestCart | test_cart | Starting Test test_cart 
+2026-03-20 15:13:46,699 | INFO | base_test | TestCart | test_cart | launch application in chrome chrome using URL https://www.saucedemo.com/
+2026-03-20 15:13:46,756 | INFO | base_test | TestCart | test_cart | Maximize the window
+2026-03-20 15:13:47,384 | INFO | base_page | LoginPage | test_cart | Entered text <<standard_user>> into element with locator: ('id', 'user-name')
+2026-03-20 15:13:47,384 | INFO | login_page | LoginPage | test_cart | Username entered:<<standard_user>>
+2026-03-20 15:13:47,478 | INFO | base_page | LoginPage | test_cart | Entered text <<secret_sauce>> into element with locator: ('id', 'password')
+2026-03-20 15:13:47,478 | INFO | login_page | LoginPage | test_cart | Password entered:<<secret_sauce>>
+2026-03-20 15:13:47,618 | INFO | base_page | LoginPage | test_cart | Clicked on element : ('id', 'login-button')
+2026-03-20 15:13:47,618 | INFO | login_page | LoginPage | test_cart | Login Button clicked
+2026-03-20 15:13:47,701 | INFO | base_page | InventoryPage | test_cart | Clicked on element : ('xpath', "//div[normalize-space()='Sauce Labs Backpack']/ancestor::div[@class='inventory_item']//button")
+2026-03-20 15:13:47,767 | INFO | base_page | InventoryPage | test_cart | Clicked on element : ('xpath', "//div[normalize-space()='Sauce Labs Fleece Jacket']/ancestor::div[@class='inventory_item']//button")
+2026-03-20 15:13:47,846 | INFO | base_page | InventoryPage | test_cart | Clicked on element : ('class name', 'shopping_cart_link')
+2026-03-20 15:13:47,923 | INFO | base_page | CartPage | test_cart | Text from element ('xpath', "//span[@class='title']") :  <<Your Cart>>
+2026-03-20 15:13:47,929 | INFO | base_page | CartPage | test_cart | Getting Cart Page Title : Your Cart
+2026-03-20 15:13:47,933 | INFO | base_page | InventoryPage | test_cart | Current URL: <<https://www.saucedemo.com/cart.html>>
+2026-03-20 15:13:53,087 | INFO | base_test | TestCart | test_cart | Finished test test_cart
