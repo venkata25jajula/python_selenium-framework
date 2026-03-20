@@ -136,7 +136,7 @@ jobs:
 
   email:
     runs-on: windows-latest
-    needs: [test, report, pages]
+    needs: [test, report, publish-report]
     if: always()
     steps:
       - name: Send Email on Success

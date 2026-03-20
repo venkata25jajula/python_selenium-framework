@@ -1,5 +1,13 @@
 # 🚀 Selenium Pytest Automation Framework
 
+![Python](https://img.shields.io/badge/Python-3.x-blue)
+![Pytest](https://img.shields.io/badge/Pytest-Framework-green)
+![Selenium](https://img.shields.io/badge/Selenium-Automation-brightgreen)
+![Jenkins](https://img.shields.io/badge/Jenkins-CI%2FCD-red)
+![Allure](https://img.shields.io/badge/Allure-Reporting-orange)
+
+---
+
 ## 📌 Overview
 
 This is a **scalable Test Automation Framework** built using:
@@ -8,8 +16,9 @@ This is a **scalable Test Automation Framework** built using:
 * **Pytest**
 * **Page Object Model (POM)**
 * **Allure Reporting**
+* **Jenkins CI/CD Integration**
 
-The framework is designed for **maintainability, reusability, and CI/CD integration (Jenkins-ready)**.
+The framework is designed for **maintainability, reusability, and real-time CI/CD execution**.
 
 ---
 
@@ -26,6 +35,8 @@ project/
 ├── logs/                 # Execution logs (ignored in Git)
 ├── reports/              # Test reports (ignored in Git)
 ├── allure-report/        # Allure HTML report (ignored)
+│
+├── screenshots/          # Allure report screenshots
 │
 ├── conftest.py           # Pytest fixtures
 ├── pytest.ini            # Pytest configuration
@@ -44,7 +55,8 @@ project/
 * ✅ Pytest fixtures for setup/teardown
 * ✅ Allure reporting with screenshots
 * ✅ Config-driven execution
-* ✅ Jenkins/CI ready
+* ✅ GitHub → Jenkins CI/CD integration
+* ✅ Real-time test execution via webhooks
 
 ---
 
@@ -66,17 +78,69 @@ python TestRunner.py
 
 ## 📊 Allure Reporting
 
-### Generate results
+### ▶️ Generate results
 
 ```bash
-pytest --alluredir=reports/allure-results
+pytest -v --alluredir=reports/allure-results
 ```
 
-### View report
+### ▶️ View report locally
 
 ```bash
 allure serve reports/allure-results
 ```
+
+---
+
+## 🌐 Allure Report via Jenkins
+
+Allure reports are automatically published after each Jenkins build.
+
+### 🔗 Sample Report (Local Jenkins)
+
+http://localhost:8080/job/GITHUB%20-%20Python%20Selinium%20Test%20Runner/8/allure/#
+
+---
+
+### 🚀 CI/CD Workflow
+
+```
+GitHub → Webhook → Jenkins → Pytest → Allure Results → Allure Report
+```
+
+---
+
+### ⚠️ Note
+
+* The above report link works only on **localhost**
+* For external access:
+
+  * Use ngrok (temporary public URL)
+  * Or deploy Jenkins on cloud (AWS EC2)
+
+---
+
+## 📸 Allure Report Screenshots
+
+### 🟢 Test Execution Overview
+
+![Allure Overview](./screenshots/allure-overview.png)
+
+* ✅ 100% test pass rate
+* 🧪 Total test cases executed
+* 📊 Execution trends visualization
+* 📦 Test suites grouping
+
+---
+
+### 🧩 Test Execution Details
+
+![Allure Details](./screenshots/allure-details.png)
+
+* 📋 Step-by-step execution logs
+* ⏱️ Execution time per step
+* ✅ Clear pass/fail status
+* 🔍 Detailed validation flow
 
 ---
 
@@ -100,7 +164,7 @@ browser = chrome
 
 ## 📸 Logging & Reports
 
-* Logs are generated under:
+* Logs:
 
 ```
 logs/
@@ -142,9 +206,31 @@ allure-report/
 
 ## 🔄 CI/CD Integration (Jenkins)
 
-* Execute tests via `TestRunner.py`
-* Publish Allure reports
-* Archive logs & artifacts
+This framework is fully integrated with Jenkins for automated execution.
+
+### ⚙️ Pipeline Flow
+
+```
+GitHub → Webhook → Jenkins → Pytest Execution → Allure Results → Allure Report
+```
+
+### 🔧 Key Capabilities
+
+* 🔁 Auto-trigger on GitHub push (webhook-based)
+* 🧪 Executes Selenium + Pytest suite
+* 📊 Publishes Allure reports after each build
+* 📦 Archives logs and test artifacts
+* 🌐 Can be exposed publicly using ngrok
+
+---
+
+## 🧠 DevOps Highlights
+
+* ✔️ CI/CD pipeline using Jenkins
+* ✔️ GitHub webhook integration
+* ✔️ Docker-ready setup
+* ✔️ Local Jenkins exposed using ngrok
+* ✔️ Scalable for cloud deployment (AWS EC2)
 
 ---
 
@@ -162,21 +248,21 @@ pip install -r requirements.txt
 * Reusable components
 * Clean folder structure
 * Git ignore for non-essential files
-* Scalable design
-
----
-
-## 👨‍💻 Author
-
-**Venkata Apparao Jajula**
+* Scalable and maintainable design
 
 ---
 
 ## 🚀 Future Enhancements
 
 * Parallel execution (pytest-xdist)
-* Docker integration
+* Dockerized test execution
 * Cloud execution (AWS / Selenium Grid)
-* API + UI combined framework
+* API + UI combined automation framework
+
+---
+
+## 👨‍💻 Author
+
+**Venkata Apparao Jajula**
 
 ---
