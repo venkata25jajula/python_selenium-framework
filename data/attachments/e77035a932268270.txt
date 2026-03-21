@@ -1,3 +1,0 @@
-<configparser.ConfigParser object at 0x000002B25BC68650>
-['settings']
-<configparser.ConfigParser object at 0x000002B25BC68650>

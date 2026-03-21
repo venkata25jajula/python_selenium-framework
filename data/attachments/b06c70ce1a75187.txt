@@ -1,0 +1,14 @@
+2026-03-21 14:28:25,127 | INFO | base_test | TestInventory | test_add_item_to_cart | Starting Test test_add_item_to_cart 
+2026-03-21 14:28:27,547 | INFO | base_test | TestInventory | test_add_item_to_cart | launch application in chrome chrome using URL https://www.saucedemo.com/
+2026-03-21 14:28:27,571 | INFO | base_test | TestInventory | test_add_item_to_cart | Maximize the window
+2026-03-21 14:28:27,737 | INFO | base_page | LoginPage | test_add_item_to_cart | Entered text <<standard_user>> into element with locator: ('id', 'user-name')
+2026-03-21 14:28:27,738 | INFO | login_page | LoginPage | test_add_item_to_cart | Username entered:<<standard_user>>
+2026-03-21 14:28:27,837 | INFO | base_page | LoginPage | test_add_item_to_cart | Entered text <<secret_sauce>> into element with locator: ('id', 'password')
+2026-03-21 14:28:27,837 | INFO | login_page | LoginPage | test_add_item_to_cart | Password entered:<<secret_sauce>>
+2026-03-21 14:28:27,967 | INFO | base_page | LoginPage | test_add_item_to_cart | Clicked on element : ('id', 'login-button')
+2026-03-21 14:28:27,967 | INFO | login_page | LoginPage | test_add_item_to_cart | Login Button clicked
+2026-03-21 14:28:28,025 | INFO | inventory_page | InventoryPage | test_add_item_to_cart | Inventory items: ['Sauce Labs Backpack', 'Sauce Labs Bike Light', 'Sauce Labs Bolt T-Shirt', 'Sauce Labs Fleece Jacket', 'Sauce Labs Onesie', 'Test.allTheThings() T-Shirt (Red)']
+2026-03-21 14:28:28,106 | INFO | base_page | InventoryPage | test_add_item_to_cart | Clicked on element : ('xpath', "//div[normalize-space()='Sauce Labs Backpack']/ancestor::div[@class='inventory_item']//button")
+2026-03-21 14:28:28,174 | INFO | base_page | InventoryPage | test_add_item_to_cart | Clicked on element : ('xpath', "//div[normalize-space()='Sauce Labs Fleece Jacket']/ancestor::div[@class='inventory_item']//button")
+2026-03-21 14:28:28,192 | INFO | base_page | InventoryPage | test_add_item_to_cart | Cart badge count: 2
+2026-03-21 14:28:32,333 | INFO | base_test | TestInventory | test_add_item_to_cart | Finished test test_add_item_to_cart
