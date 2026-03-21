@@ -7,8 +7,6 @@ from utils.page_factory import PageFactory
 
 class LoginPage(BasePage):
 
-    def is_loaded(self):
-        pass
 
     logger = LogGen.get_logger("LoginPage")
 
