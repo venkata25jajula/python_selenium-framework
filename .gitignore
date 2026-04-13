@@ -38,3 +38,4 @@ Thumbs.db
 # Keep important files
 # ------------------------------
 !.gitignore
+!.python-version

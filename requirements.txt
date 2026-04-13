@@ -8,6 +8,8 @@ allure-pytest==2.13.5
 requests==2.32.4
 requests-mock==1.12.1
 jsonschema==4.23.0
+fastapi~=0.135.2
+uvicorn
 
 # ─── Data & Utilities ───────────────────────────────────────
 pandas==2.0.3
@@ -22,3 +24,5 @@ pytest-dependency==0.6.1
 pytest-xdist==3.6.1          # parallel execution
 pytest-rerunfailures==14.0   # retry flaky tests
 
+
+pydantic~=2.12.5
