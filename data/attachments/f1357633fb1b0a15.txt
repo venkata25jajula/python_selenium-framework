@@ -1,0 +1,15 @@
+2026-04-13 18:14:03,811 | INFO | base_test | TestCart | test_continue_shopping | Starting Test test_continue_shopping 
+2026-04-13 18:14:06,291 | INFO | base_test | TestCart | test_continue_shopping | launch application in chrome chrome using URL https://www.saucedemo.com/
+2026-04-13 18:14:06,318 | INFO | base_test | TestCart | test_continue_shopping | Maximize the window
+2026-04-13 18:14:06,449 | INFO | base_page | LoginPage | test_validate_items_in_cart | Entered text <<standard_user>> into element with locator: ('id', 'user-name')
+2026-04-13 18:14:06,449 | INFO | login_page | LoginPage | test_validate_items_in_cart | Username entered:<<standard_user>>
+2026-04-13 18:14:06,567 | INFO | base_page | LoginPage | test_validate_items_in_cart | Entered text <<secret_sauce>> into element with locator: ('id', 'password')
+2026-04-13 18:14:06,567 | INFO | login_page | LoginPage | test_validate_items_in_cart | Password entered:<<secret_sauce>>
+2026-04-13 18:14:06,740 | INFO | base_page | LoginPage | test_validate_items_in_cart | Clicked on element : ('id', 'login-button')
+2026-04-13 18:14:06,740 | INFO | login_page | LoginPage | test_validate_items_in_cart | Login Button clicked
+2026-04-13 18:14:06,834 | INFO | base_page | InventoryPage | test_validate_items_in_cart | Clicked on element : ('xpath', "//div[normalize-space()='Sauce Labs Fleece Jacket']/ancestor::div[@class='inventory_item']//button")
+2026-04-13 18:14:06,939 | INFO | base_page | InventoryPage | test_validate_items_in_cart | Clicked on element : ('class name', 'shopping_cart_link')
+2026-04-13 18:14:07,037 | INFO | base_page | CartPage | test_validate_items_in_cart | Clicked on element : ('id', 'continue-shopping')
+2026-04-13 18:14:07,044 | INFO | base_page | InventoryPage | test_validate_items_in_cart | Current URL: <<https://www.saucedemo.com/inventory.html>>
+2026-04-13 18:14:07,049 | INFO | cart_test | TestCart | test_continue_shopping | Current URL after clicking Continue Shopping: <<https://www.saucedemo.com/inventory.html>>
+2026-04-13 18:14:11,176 | INFO | base_test | TestCart | test_continue_shopping | Finished test test_continue_shopping

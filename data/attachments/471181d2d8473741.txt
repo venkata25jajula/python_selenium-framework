@@ -1,0 +1,14 @@
+2026-04-13 18:14:18,813 | INFO | base_test | TestInventory | test_inventory | Starting Test test_inventory 
+2026-04-13 18:14:20,941 | INFO | base_test | TestInventory | test_inventory | launch application in chrome chrome using URL https://www.saucedemo.com/
+2026-04-13 18:14:20,966 | INFO | base_test | TestInventory | test_inventory | Maximize the window
+2026-04-13 18:14:21,107 | INFO | base_page | LoginPage | test_inventory | Entered text <<standard_user>> into element with locator: ('id', 'user-name')
+2026-04-13 18:14:21,108 | INFO | login_page | LoginPage | test_inventory | Username entered:<<standard_user>>
+2026-04-13 18:14:21,223 | INFO | base_page | LoginPage | test_inventory | Entered text <<secret_sauce>> into element with locator: ('id', 'password')
+2026-04-13 18:14:21,224 | INFO | login_page | LoginPage | test_inventory | Password entered:<<secret_sauce>>
+2026-04-13 18:14:21,366 | INFO | base_page | LoginPage | test_inventory | Clicked on element : ('id', 'login-button')
+2026-04-13 18:14:21,367 | INFO | login_page | LoginPage | test_inventory | Login Button clicked
+2026-04-13 18:14:21,408 | INFO | base_page | InventoryPage | test_inventory | Text from element ('xpath', "//span[@class='title']") :  <<Products>>
+2026-04-13 18:14:21,415 | INFO | base_page | InventoryPage | test_inventory | Getting Inventory Page Title : Products
+2026-04-13 18:14:21,420 | INFO | base_page | InventoryPage | test_inventory | Current URL: <<https://www.saucedemo.com/inventory.html>>
+2026-04-13 18:14:21,468 | INFO | inventory_page | InventoryPage | test_inventory | Inventory items: ['Sauce Labs Backpack', 'Sauce Labs Bike Light', 'Sauce Labs Bolt T-Shirt', 'Sauce Labs Fleece Jacket', 'Sauce Labs Onesie', 'Test.allTheThings() T-Shirt (Red)']
+2026-04-13 18:14:25,593 | INFO | base_test | TestInventory | test_inventory | Finished test test_inventory

@@ -1,0 +1,29 @@
+2026-04-13 18:14:11,180 | INFO | base_test | TestCheckout | test_checkout | Starting Test test_checkout 
+2026-04-13 18:14:13,347 | INFO | base_test | TestCheckout | test_checkout | launch application in chrome chrome using URL https://www.saucedemo.com/
+2026-04-13 18:14:13,369 | INFO | base_test | TestCheckout | test_checkout | Maximize the window
+2026-04-13 18:14:13,517 | INFO | base_page | LoginPage | test_checkout | Entered text <<standard_user>> into element with locator: ('id', 'user-name')
+2026-04-13 18:14:13,517 | INFO | login_page | LoginPage | test_checkout | Username entered:<<standard_user>>
+2026-04-13 18:14:13,634 | INFO | base_page | LoginPage | test_checkout | Entered text <<secret_sauce>> into element with locator: ('id', 'password')
+2026-04-13 18:14:13,634 | INFO | login_page | LoginPage | test_checkout | Password entered:<<secret_sauce>>
+2026-04-13 18:14:13,776 | INFO | base_page | LoginPage | test_checkout | Clicked on element : ('id', 'login-button')
+2026-04-13 18:14:13,776 | INFO | login_page | LoginPage | test_checkout | Login Button clicked
+2026-04-13 18:14:13,848 | INFO | base_page | InventoryPage | test_checkout | Clicked on element : ('xpath', "//div[normalize-space()='Sauce Labs Backpack']/ancestor::div[@class='inventory_item']//button")
+2026-04-13 18:14:13,915 | INFO | base_page | InventoryPage | test_checkout | Clicked on element : ('xpath', "//div[normalize-space()='Sauce Labs Fleece Jacket']/ancestor::div[@class='inventory_item']//button")
+2026-04-13 18:14:13,992 | INFO | base_page | InventoryPage | test_checkout | Clicked on element : ('class name', 'shopping_cart_link')
+2026-04-13 18:14:14,076 | INFO | base_page | CartPage | test_checkout | Clicked on element : ('id', 'checkout')
+2026-04-13 18:14:14,116 | INFO | base_page | CheckoutPage | test_checkout | Text from element ('xpath', "//span[@class='title']") :  <<Checkout: Your Information>>
+2026-04-13 18:14:14,123 | INFO | base_page | CheckoutPage | test_checkout | Getting Checkout Page Title : Checkout: Your Information
+2026-04-13 18:14:14,126 | INFO | base_page | CheckoutPage | test_checkout | Current URL: <<https://www.saucedemo.com/checkout-step-one.html>>
+2026-04-13 18:14:14,211 | INFO | base_page | CheckoutPage | test_checkout | Entered text <<John>> into element with locator: ('id', 'first-name')
+2026-04-13 18:14:14,289 | INFO | base_page | CheckoutPage | test_checkout | Entered text <<Doe>> into element with locator: ('id', 'last-name')
+2026-04-13 18:14:14,369 | INFO | base_page | CheckoutPage | test_checkout | Entered text <<12345>> into element with locator: ('id', 'postal-code')
+2026-04-13 18:14:14,491 | INFO | base_page | CheckoutPage | test_checkout | Clicked on element : ('id', 'continue')
+2026-04-13 18:14:14,524 | INFO | base_page | PaymentPage | test_checkout | Text from element ('xpath', "//span[@class='title']") :  <<Checkout: Overview>>
+2026-04-13 18:14:14,530 | INFO | base_page | PaymentPage | test_checkout | Getting Payment Page Title : Checkout: Overview
+2026-04-13 18:14:14,534 | INFO | base_page | PaymentPage | test_checkout | Current URL: <<https://www.saucedemo.com/checkout-step-two.html>>
+2026-04-13 18:14:14,606 | INFO | base_page | PaymentPage | test_checkout | Clicked on element : ('id', 'finish')
+2026-04-13 18:14:14,638 | INFO | base_page | ConfirmationPage | test_checkout | Text from element ('xpath', "//span[@class='title']") :  <<Checkout: Complete!>>
+2026-04-13 18:14:14,645 | INFO | base_page | ConfirmationPage | test_checkout | Getting Confirmation Page Title : Checkout: Complete!
+2026-04-13 18:14:14,649 | INFO | base_page | ConfirmationPage | test_checkout | Current URL: <<https://www.saucedemo.com/checkout-complete.html>>
+2026-04-13 18:14:14,674 | INFO | base_page | ConfirmationPage | test_checkout | Text from element ('class name', 'complete-header') :  <<Thank you for your order!>>
+2026-04-13 18:14:18,808 | INFO | base_test | TestCheckout | test_checkout | Finished test test_checkout
